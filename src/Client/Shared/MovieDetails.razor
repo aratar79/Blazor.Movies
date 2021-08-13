@@ -1,0 +1,16 @@
+﻿<div style="margin-right: 2%; margin-bottom: 10px; text-align: center;">
+    <a href="">
+        <img src="@Movie.PosterURL" alt="Poster" style="width: 225px; height:300px;"/>
+    </a>
+    <p style="max-width:225px; height:44px; font-size: 15px; font-weight:bold;">@Movie.ShortTitle</p>
+    <div>
+        <a href="" class="btn btn-info">Edit</a>
+        <button class="btn btn-danger" type="button" @onclick="@(()=>RemoveMovie.InvokeAsync(Movie))">Remove</button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Movie Movie { get; set; }
+    [Parameter] public bool ShowButtons { get; set; } = false;
+    [Parameter] public EventCallback<Movie> RemoveMovie { get; set; }
+}

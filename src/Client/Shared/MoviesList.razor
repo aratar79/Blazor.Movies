@@ -1,0 +1,26 @@
+﻿@inject IJSRuntime js
+
+<div style="display:flex; flex-wrap:wrap; align-items:center;">
+    <GenericList ListItems="Movies">
+        <Records Context="movie">
+            <MovieDetails Movie="movie" RemoveMovie="RemoveMovie" />
+        </Records>
+    </GenericList>
+</div>
+
+
+
+@code {
+    [Parameter] public List<Movie> Movies { get; set; }
+
+    async Task RemoveMovie(Movie movie)
+    {
+        var confirm = await js.Confirm($"Do you want to delete the film {movie.Title}?");
+        if (confirm)
+        {
+            Movies.Remove(movie);
+            Console.WriteLine($"The film {movie.Title} has been removed");
+        }
+    }
+
+}

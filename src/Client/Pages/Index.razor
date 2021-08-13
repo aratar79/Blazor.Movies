@@ -1,3 +1,16 @@
 ﻿@page "/"
+@inject IService Service
 
+<div>
+    <h3>Movies</h3>
+    <MoviesList Movies="Movies" />
+</div>
 
+@code {
+    private List<Movie> Movies;
+
+    protected override void OnInitialized()
+    {
+        Movies = Service.GetMovies();
+    }
+}
